@@ -39,7 +39,7 @@ Das Plugin installiert keine zusätzlichen Pakete, verändert die PHP-Konfigurat
 
 ## Installation und Update
 
-1. Die bereitgestellte Plugin-ZIP [enphase2lox-1.0.zip](dist/enphase2lox-1.0.zip) herunterladen.
+1. Die bereitgestellte Plugin-ZIP oder Source herunterladen.
 2. In der **LoxBerry-Pluginverwaltung** die ZIP zur Installation auswählen.
 3. Nach erfolgreicher Installation **enphase2lox** öffnen.
 
