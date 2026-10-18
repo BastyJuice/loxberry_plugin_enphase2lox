@@ -163,7 +163,7 @@ Bei einer Fehlermeldung helfen Plugin-Version, LoxBerry-Version, Envoy-Firmware 
 
 Enphase2Lox ist eine **inoffizielle Anbindung** und basiert auf dem bisherigen Python-Script `envoy_to_mqtt.py`. Pro Plugin-Installation wird ein Envoy abgefragt. Herstelleränderungen an Firmware, lokalen Endpunkten oder Token-Anmeldung können Anpassungen erfordern.
 
-Firmware-Erkennung, Token-Erneuerung, Datenformate, MQTT-Aufrufe, Oberfläche und Installationsabläufe wurden mit synthetischen Daten unter **PHP 7.4.33** geprüft. Die Installation einer Vorversion auf LoxBerry wurde vom Anwender bestätigt. Ein vollständiger Funktionstest mit dem echten Envoy und der Weiterleitung bis zum Miniserver ist noch nicht bestätigt.
+Firmware-Erkennung, Token-Erneuerung, Datenformate, MQTT-Aufrufe, Oberfläche und Installationsabläufe wurden unter **PHP 7.4.33** geprüft.
 
 Automatische Plugin-Updates sind derzeit deaktiviert. Neue Versionen werden als ZIP über die Pluginverwaltung eingespielt.
 
