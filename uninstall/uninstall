@@ -1,0 +1,16 @@
+#!/bin/bash
+# LoxBerry removes the plugin folders itself after this root hook returns.
+set -u
+home_dir=${LBHOMEDIR:-${5:-'REPLACELBHOMEDIR'}}
+case "$home_dir" in
+    /*) ;;
+    *) echo '<ERROR> LoxBerry base directory is missing.' >&2; exit 2 ;;
+esac
+controller="${LBPBIN:-$home_dir/bin/plugins}/$3/service.sh"
+if [ ! -f "$controller" ]; then exit 0; fi
+if runuser -u loxberry -- env LBHOMEDIR="$home_dir" /bin/bash "$controller" stop; then
+    echo '<OK> enphase2lox worker stopped.'
+    exit 0
+fi
+echo '<WARNING> The worker is still finishing a request; its stop has been requested.'
+exit 1

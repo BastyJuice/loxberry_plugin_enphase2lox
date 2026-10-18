@@ -1,0 +1,35 @@
+#!/bin/bash
+# LoxBerry boot hook runs as root. Only the unprivileged controller starts PHP.
+set -u
+# LoxBerry expands this token to its actual base directory during installation.
+home_dir=${LBHOMEDIR:-'REPLACELBHOMEDIR'}
+case "$home_dir" in
+    /*) ;;
+    *) echo 'LoxBerry base directory is missing.' >&2; exit 2 ;;
+esac
+folder=$(/usr/bin/php -r '
+    $file = $argv[1] . "/data/system/plugindatabase.json";
+    if (is_file($file)) {
+        $database = json_decode(file_get_contents($file), true);
+        foreach (($database["plugins"] ?? []) as $plugin) {
+            if (($plugin["name"] ?? "") === "enphase2lox") {
+                $folder = $plugin["folder"] ?? "";
+                if (preg_match("/^[a-zA-Z0-9_-]+$/D", $folder)) { echo $folder; exit; }
+            }
+        }
+    }
+    // Legacy database is pipe-delimited; folder names can have numeric suffixes.
+    $file = $argv[1] . "/data/system/plugindatabase.dat";
+    foreach (is_file($file) ? file($file, FILE_IGNORE_NEW_LINES) : [] as $row) {
+        $fields = explode("|", $row);
+        if (($fields[4] ?? "") === "enphase2lox" && preg_match("/^[a-zA-Z0-9_-]+$/D", $fields[5] ?? "")) {
+            echo $fields[5]; exit;
+        }
+    }
+' "$home_dir") || exit 1
+if [ -z "$folder" ] || [ ! -f "$home_dir/bin/plugins/$folder/service.sh" ]; then exit 0; fi
+if [ "$(id -u)" -eq 0 ]; then
+    runuser -u loxberry -- env LBHOMEDIR="$home_dir" /bin/bash "$home_dir/bin/plugins/$folder/service.sh" start
+else
+    /bin/bash "$home_dir/bin/plugins/$folder/service.sh" start
+fi

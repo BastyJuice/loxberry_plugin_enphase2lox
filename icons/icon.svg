@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="enphase2lox">
+  <rect width="128" height="128" rx="27" fill="#183b49"/>
+  <circle cx="89" cy="36" r="14" fill="#ffca4b"/>
+  <path d="M89 12v5m0 38v5M65 36h5m38 0h5M72 19l4 4m26 26 4 4m0-34-4 4" stroke="#ffca4b" stroke-width="4" stroke-linecap="round"/>
+  <path d="m29 50 51 0 16 48H16z" fill="#57b7ce" stroke="#ecf9fc" stroke-width="4" stroke-linejoin="round"/>
+  <path d="m46 50-6 48m23-48 6 48M24 66h61M19 82h71" stroke="#ecf9fc" stroke-width="3"/>
+  <path d="M56 99v13m-18 0h36" stroke="#ecf9fc" stroke-width="5" stroke-linecap="round"/>
+</svg>
